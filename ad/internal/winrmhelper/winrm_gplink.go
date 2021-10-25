@@ -54,6 +54,7 @@ func (g *GPLink) NewGPLink(conf *config.ProviderConf) (string, error) {
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand(cmds, psOpts)
 	result, err := psCmd.Run(conf)
@@ -123,6 +124,7 @@ func (g *GPLink) ModifyGPLink(conf *config.ProviderConf, changes map[string]inte
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand(cmds, psOpts)
 	result, err := psCmd.Run(conf)
@@ -153,6 +155,7 @@ func (g *GPLink) RemoveGPLink(conf *config.ProviderConf) error {
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -194,6 +197,7 @@ func GetGPLinkFromHost(conf *config.ProviderConf, gpoGUID, containerGUID string)
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand(cmds, psOpts)
 	result, err := psCmd.Run(conf)

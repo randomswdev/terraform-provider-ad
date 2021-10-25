@@ -54,6 +54,7 @@ func NewOrgUnitFromHost(conf *config.ProviderConf, guid, name, path string) (*Or
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -98,6 +99,7 @@ func (o *OrgUnit) Create(conf *config.ProviderConf) (string, error) {
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -142,6 +144,7 @@ func (o *OrgUnit) Update(conf *config.ProviderConf, changes map[string]interface
 			Username:        conf.Settings.WinRMUsername,
 			Password:        conf.Settings.WinRMPassword,
 			Server:          conf.Settings.DomainName,
+			PDCEmulator:     conf.Settings.PDCEmulator,
 		}
 		psCmd := NewPSCommand([]string{cmd}, psOpts)
 		result, err := psCmd.Run(conf)
@@ -165,6 +168,7 @@ func (o *OrgUnit) Update(conf *config.ProviderConf, changes map[string]interface
 				Username:        conf.Settings.WinRMUsername,
 				Password:        conf.Settings.WinRMPassword,
 				Server:          conf.Settings.DomainName,
+				PDCEmulator:     conf.Settings.PDCEmulator,
 			}
 			psCmd := NewPSCommand([]string{cmd}, psOpts)
 			result, err := psCmd.Run(conf)
@@ -186,6 +190,7 @@ func (o *OrgUnit) Update(conf *config.ProviderConf, changes map[string]interface
 			Username:        conf.Settings.WinRMUsername,
 			Password:        conf.Settings.WinRMPassword,
 			Server:          conf.Settings.DomainName,
+			PDCEmulator:     conf.Settings.PDCEmulator,
 		}
 		psCmd := NewPSCommand([]string{cmd}, psOpts)
 		result, err := psCmd.Run(conf)
@@ -206,6 +211,7 @@ func (o *OrgUnit) Update(conf *config.ProviderConf, changes map[string]interface
 				Username:        conf.Settings.WinRMUsername,
 				Password:        conf.Settings.WinRMPassword,
 				Server:          conf.Settings.DomainName,
+				PDCEmulator:     conf.Settings.PDCEmulator,
 			}
 			psCmd := NewPSCommand([]string{cmd}, psOpts)
 			result, err := psCmd.Run(conf)
@@ -228,6 +234,7 @@ func (o *OrgUnit) Update(conf *config.ProviderConf, changes map[string]interface
 			Username:        conf.Settings.WinRMUsername,
 			Password:        conf.Settings.WinRMPassword,
 			Server:          conf.Settings.DomainName,
+			PDCEmulator:     conf.Settings.PDCEmulator,
 		}
 		psCmd := NewPSCommand([]string{cmd}, psOpts)
 		result, err := psCmd.Run(conf)
@@ -249,6 +256,7 @@ func (o *OrgUnit) Update(conf *config.ProviderConf, changes map[string]interface
 			Username:        conf.Settings.WinRMUsername,
 			Password:        conf.Settings.WinRMPassword,
 			Server:          conf.Settings.DomainName,
+			PDCEmulator:     conf.Settings.PDCEmulator,
 		}
 		psCmd := NewPSCommand([]string{cmd}, psOpts)
 		result, err := psCmd.Run(conf)
@@ -282,6 +290,7 @@ func (o *OrgUnit) Delete(conf *config.ProviderConf) error {
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 		SkipCredPrefix:  true,
 	}
 
@@ -299,6 +308,7 @@ func (o *OrgUnit) Delete(conf *config.ProviderConf) error {
 		Password:        conf.Settings.WinRMPassword,
 		SkipCredSuffix:  true,
 		Server:          "",
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)

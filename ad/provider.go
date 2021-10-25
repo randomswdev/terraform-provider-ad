@@ -98,6 +98,12 @@ func Provider() *schema.Provider {
 				DefaultFunc: schema.EnvDefaultFunc("AD_WINRM_PASS_CREDENTIALS", false),
 				Description: "Pass credentials in WinRM session to create a System.Management.Automation.PSCredential. (default: false, environment variable: AD_WINRM_PASS_CREDENTIALS)",
 			},
+			"ad_pdc_emulator": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("AD_PDC_EMULATOR", ""),
+				Description: "Active Directory Primary Domain Controller Emulator (default: none, environment variable: AD_PDC_EMULATOR)",
+			},
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"ad_user":     dataSourceADUser(),

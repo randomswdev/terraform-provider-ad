@@ -107,6 +107,7 @@ func SetMachineExtensionNames(conf *config.ProviderConf, gpoDN, value string) er
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -195,6 +196,7 @@ func UploadFiletoSYSVOL(conf *config.ProviderConf, cpClient *winrmcp.Winrmcp, bu
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	})
 	mdOutput, err := mdPSComamnd.Run(conf)
 	if err != nil {
@@ -213,6 +215,7 @@ func UploadFiletoSYSVOL(conf *config.ProviderConf, cpClient *winrmcp.Winrmcp, bu
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	})
 	cpOutput, err := cpPSComamnd.Run(conf)
 	if err != nil {

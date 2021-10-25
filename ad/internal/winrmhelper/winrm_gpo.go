@@ -91,6 +91,7 @@ func GetGPOFromHost(conf *config.ProviderConf, name, guid string) (*GPO, error) 
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -163,6 +164,7 @@ func (g *GPO) Rename(conf *config.ProviderConf, target string) error {
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand(cmds, psOpts)
 	result, err := psCmd.Run(conf)
@@ -191,6 +193,7 @@ func (g *GPO) ChangeStatus(conf *config.ProviderConf, status string) error {
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -235,6 +238,7 @@ func (g *GPO) NewGPO(conf *config.ProviderConf) (string, error) {
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand(cmds, psOpts)
 	result, err := psCmd.Run(conf)
@@ -271,6 +275,7 @@ func (g *GPO) DeleteGPO(conf *config.ProviderConf) error {
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	_, err := psCmd.Run(conf)
@@ -320,6 +325,7 @@ func (g *GPO) getGPOFilePath(conf *config.ProviderConf) (string, error) {
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -349,6 +355,7 @@ func getSysVolPath(conf *config.ProviderConf) (string, error) {
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -390,6 +397,7 @@ func (g *GPO) SetADGPOVersions(conf *config.ProviderConf, gpoVersion uint32) err
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
 		SkipCredPrefix:  true,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 
 	tmpCmd := fmt.Sprintf("Get-ADObject  -LDAPFilter '(&(objectClass=groupPolicyContainer)(cn={%s}))' -Properties *", g.ID)
@@ -408,6 +416,7 @@ func (g *GPO) SetADGPOVersions(conf *config.ProviderConf, gpoVersion uint32) err
 		Password:        conf.Settings.WinRMPassword,
 		Server:          "",
 		SkipCredSuffix:  true,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -479,6 +488,7 @@ func (g *GPO) loadGPTIni(conf *config.ProviderConf) error {
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)

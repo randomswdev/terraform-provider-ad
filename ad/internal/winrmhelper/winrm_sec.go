@@ -60,6 +60,7 @@ func GetSecIniContents(conf *config.ProviderConf, gpo *GPO) ([]byte, error) {
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -130,6 +131,7 @@ func RemoveSecIni(conf *config.ProviderConf, cpConn *winrmcp.Winrmcp, gpo *GPO) 
 		Password:        conf.Settings.WinRMPassword,
 		Server:          domainName,
 		InvokeCommand:   conf.IsPassCredentialsEnabled(),
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)

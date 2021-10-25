@@ -22,6 +22,7 @@ type CreatePSCommandOpts struct {
 	SkipCredPrefix  bool
 	SkipCredSuffix  bool
 	Username        string
+	PDCEmulator     string
 }
 
 type PSCommand struct {
@@ -54,11 +55,15 @@ func NewPSCommand(cmds []string, opts CreatePSCommandOpts) *PSCommand {
 	}
 
 	if opts.PassCredentials && opts.Server != "" {
+		server := opts.Server
+		if opts.PDCEmulator != "" {
+			server = opts.PDCEmulator
+		}
 		switch {
 		case opts.InvokeCommand:
-			cmds = append(cmds, fmt.Sprintf("-Computername %s", opts.Server))
+			cmds = append(cmds, fmt.Sprintf("-Computername %s", server))
 		default:
-			cmds = append(cmds, fmt.Sprintf("-Server %s", opts.Server))
+			cmds = append(cmds, fmt.Sprintf("-Server %s", server))
 		}
 	}
 

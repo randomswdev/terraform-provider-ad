@@ -222,6 +222,7 @@ func (u *User) NewUser(conf *config.ProviderConf) (string, error) {
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand(cmds, psOpts)
 	result, err := psCmd.Run(conf)
@@ -393,6 +394,7 @@ func (u *User) ModifyUser(d *schema.ResourceData, conf *config.ProviderConf) err
 			Username:        conf.Settings.WinRMUsername,
 			Password:        conf.Settings.WinRMPassword,
 			Server:          conf.Settings.DomainName,
+			PDCEmulator:     conf.Settings.PDCEmulator,
 		}
 		psCmd := NewPSCommand(cmds, psOpts)
 		result, err := psCmd.Run(conf)
@@ -416,6 +418,7 @@ func (u *User) ModifyUser(d *schema.ResourceData, conf *config.ProviderConf) err
 			Username:        conf.Settings.WinRMUsername,
 			Password:        conf.Settings.WinRMPassword,
 			Server:          conf.Settings.DomainName,
+			PDCEmulator:     conf.Settings.PDCEmulator,
 		}
 		psCmd := NewPSCommand([]string{cmd}, psOpts)
 		result, err := psCmd.Run(conf)
@@ -439,6 +442,7 @@ func (u *User) ModifyUser(d *schema.ResourceData, conf *config.ProviderConf) err
 			Username:        conf.Settings.WinRMUsername,
 			Password:        conf.Settings.WinRMPassword,
 			Server:          conf.Settings.DomainName,
+			PDCEmulator:     conf.Settings.PDCEmulator,
 		}
 		psCmd := NewPSCommand([]string{cmd}, psOpts)
 		result, err := psCmd.Run(conf)
@@ -464,6 +468,7 @@ func (u *User) DeleteUser(conf *config.ProviderConf) error {
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	_, err := psCmd.Run(conf)
@@ -574,6 +579,7 @@ func GetUserFromHost(conf *config.ProviderConf, guid string, customAttributes []
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)

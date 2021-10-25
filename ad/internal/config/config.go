@@ -38,6 +38,7 @@ type Settings struct {
 	WinRMUseNTLM         bool
 	WinRMPassCredentials bool
 	DomainName           string
+	PDCEmulator          string
 }
 
 // NewConfig returns a new Config struct populated with Resource Data.
@@ -53,6 +54,7 @@ func NewConfig(d *schema.ResourceData) (*Settings, error) {
 	krbConfig := d.Get("krb_conf").(string)
 	krbSpn := d.Get("krb_spn").(string)
 	winRMUseNTLM := d.Get("winrm_use_ntlm").(bool)
+	pdcEmulator := d.Get("ad_pdc_emulator").(string)
 	winRMPassCredentials := d.Get("winrm_pass_credentials").(bool)
 
 	cfg := &Settings{
@@ -68,6 +70,7 @@ func NewConfig(d *schema.ResourceData) (*Settings, error) {
 		KrbSpn:               krbSpn,
 		WinRMUseNTLM:         winRMUseNTLM,
 		WinRMPassCredentials: winRMPassCredentials,
+		PDCEmulator:          pdcEmulator,
 	}
 
 	return cfg, nil

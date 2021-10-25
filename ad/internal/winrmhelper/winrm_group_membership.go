@@ -79,6 +79,7 @@ func (g *GroupMembership) getGroupMembers(conf *config.ProviderConf) ([]*GroupMe
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -115,6 +116,7 @@ func (g *GroupMembership) bulkGroupMembersOp(conf *config.ProviderConf, operatio
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
@@ -171,6 +173,7 @@ func (g *GroupMembership) Create(conf *config.ProviderConf) error {
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand(cmds, psOpts)
 	result, err := psCmd.Run(conf)
@@ -192,6 +195,7 @@ func (g *GroupMembership) Delete(conf *config.ProviderConf) error {
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 		SkipCredPrefix:  true,
 	}
 	subcmd := NewPSCommand([]string{fmt.Sprintf("Get-AdGroupMember %q", g.GroupGUID)}, subCmdOpt)
@@ -205,6 +209,7 @@ func (g *GroupMembership) Delete(conf *config.ProviderConf) error {
 		Username:        conf.Settings.WinRMUsername,
 		Password:        conf.Settings.WinRMPassword,
 		Server:          conf.Settings.DomainName,
+		PDCEmulator:     conf.Settings.PDCEmulator,
 	}
 	psCmd := NewPSCommand([]string{cmd}, psOpts)
 	result, err := psCmd.Run(conf)
